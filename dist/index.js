@@ -25,6 +25,17 @@ const ContactRoutes_1 = require("./routes/ContactRoutes");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(body_parser_1.default.json());
+console.log({
+    type: "postgres",
+    host: process.env.POSTGRES_HOST || "localhost",
+    port: parseInt(process.env.DB_PORT || "5432"),
+    username: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DATABASE,
+    entities: [Contact_1.Contact],
+    synchronize: true,
+    logging: false,
+});
 exports.AppDataSource = new typeorm_1.DataSource({
     type: "postgres",
     host: process.env.POSTGRES_HOST || "localhost",
